@@ -1,18 +1,68 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"log"
+	"math/rand"
+	"os"
 	"reflect"
+	"strconv"
 	"strings"
 	"time"
 )
 
 func main() {
-	fmt.Println("This module has intro to conditions, loops and methods")
+	// fmt.Println("This module has intro to conditions, loops and methods")
 
-	demoMethodWithTimePackage()
+	// demoMethodWithTimePackage()
 
-	demoStringMethods()
+	// demoStringMethods()
+
+	// passFail()
+
+	num := RandInt(15, 96)
+
+	fmt.Println("Random number between 15 and 96 is:", num)
+
+	for x := 0; x < 10; x++ {
+		fmt.Println("x is :", x)
+	}
+}
+
+func RandInt(min int, max int) int {
+	// return min + rand.Intn(max-min)
+	return rand.Intn(max)
+}
+
+func passFail() {
+	fmt.Print("Enter a grade:")
+	reader := bufio.NewReader(os.Stdin)
+	input, err := reader.ReadString('\n')
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// input is a string
+	fmt.Println("You entered:", input)
+	// input is a string
+	input = strings.TrimSpace(input)
+
+	// err is only being assigned where as grade is declared and assigned
+	grade, err := strconv.ParseFloat(input, 64)
+	if err != nil {
+		log.Fatal(err)
+	}
+	var status string
+	// grade is a string
+	if grade >= 60 {
+		status = "Pass"
+	} else {
+		status = "Fail"
+	}
+
+	fmt.Println("The status is:", status)
 }
 
 func demoStringMethods() {
