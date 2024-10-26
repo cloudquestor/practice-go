@@ -16,8 +16,16 @@ func main() {
 	fmt.Printf("%.2f liters paints needed \n", paintForRoomTwo)
 	if err != nil {
 		fmt.Println(err)
-		return
+
 	}
+
+	name := "Tom"
+	//Get address of variable using & "address of" operator
+	address := &name
+	fmt.Println(*address)
+	updateName(address)
+	fmt.Println(name)
+	fmt.Println(*address)
 
 }
 
@@ -37,4 +45,30 @@ func paintAndAreaCalculatorWithErrHandling(width, height float64) (paint float64
 	}
 	area := width * height
 	return area / metersPerLiter, nil
+}
+
+// Go is a "pass-by-value" language; function parameters receive a copy
+// of the arguments from the function call
+
+//Pointers - oh good old pointer
+//Get address of variable using & "address of" operator
+// Values that represtn the address of a variable are known as Pointers
+
+//Type of a point is written with a * symbol followed by the type of the variable
+// the pointer points to
+//*int - point to integer
+
+//Get value at a pointer by *Variable name - value at Variable
+// * operator can also be used to update the value at the pointer
+// *myIntPointer = 9
+
+func updateName(x *string) {
+	*x = "Bob"
+}
+
+// It's okay to return a pointer to a local variable
+// function returns the address of the local variable
+func returnLocalPointer() *int {
+	i := 5
+	return &i
 }
